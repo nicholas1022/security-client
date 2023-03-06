@@ -1,0 +1,27 @@
+server:
+  port: 8083
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          ope-client-oidc:
+            provider: spring
+            client-id: ope-client
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://127.0.0.1:8080/login/oauth2/code/{registrationId}"
+            scope: openid
+            client-name: articles-client-oidc
+          ope-client-authorization-code:
+            provider: spring
+            client-id: ope-client
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://127.0.0.1:8080/authorized"
+            scope: ope.read
+            client-name: ope-client-authorization-code
+        provider:
+          spring:
+            issuer-uri: http://auth-server:9000
